@@ -41,4 +41,12 @@ const invoiceSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+invoiceSchema.virtual("isOverdue").get(function () {
+  return this.status !== "PAID" && new Date(this.dueDate) < new Date();
+});
+
+// Make sure virtuals are included in JSON response
+invoiceSchema.set("toJSON", { virtuals: true });
+invoiceSchema.set("toObject", { virtuals: true });
+
 export default mongoose.model("Invoice", invoiceSchema)
