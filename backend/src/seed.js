@@ -10,15 +10,9 @@ const seed = async () => {
   await mongoose.connect(process.env.MONGO_URI);
   console.log("MongoDB connected");
 
-  // Clear existing data
-  await Invoice.deleteMany();
-  await InvoiceLine.deleteMany();
-  await Payment.deleteMany();
-
-  // Create invoice
   const invoice = await Invoice.create({
     invoiceNumber: "INV-001",
-    customerName: "Vaibhavi Mistri",
+    customerName: "Jiya Mehta",
     issueDate: new Date("2024-01-01"),
     dueDate: new Date("2024-01-31"),
     status: "DRAFT",
@@ -28,7 +22,6 @@ const seed = async () => {
     isArchived: false,
   });
 
-  // Create line items
   await InvoiceLine.create([
     {
       invoiceId: invoice._id,
@@ -44,7 +37,6 @@ const seed = async () => {
     },
   ]);
 
-  // Create a payment
   await Payment.create({
     invoiceId: invoice._id,
     amount: 100,
