@@ -22,6 +22,7 @@ A full-stack Invoice Module built with the MERN stack (MongoDB, Express, React, 
 - 🗄️ Archive and restore invoices
 - 📋 View all invoices with archived toggle
 - 📊 Full invoice details with line items, totals, and payment history
+- 🔴 Overdue detection — invoices past due date automatically show **OVERDUE** badge
 
 ---
 
@@ -172,6 +173,7 @@ Frontend will start at `http://localhost:5173`
 - Overpayment is **not allowed**
 - When Balance Due reaches 0 → status automatically changes to **PAID**
 - Archived invoices are hidden from the home page by default
+- If `dueDate < today` and status is not `PAID` → invoice is marked as **OVERDUE**
 
 ---
 
